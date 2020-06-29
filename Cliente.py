@@ -8,6 +8,8 @@ cliente.connect((host, porta)) # Se conecantando ao servidor.
 
 while True:
 
+    print('*** BUSCA INFORMAÇÕES SOBRE UM IP ***')
+    print('Digite o IP ou 0 para fechar a conexão.')
     # Enviando msg para servidor
     msg = input('IP:')
     if(msg == '0'):
