@@ -1,5 +1,5 @@
 from Classes.ValidaMensagem import ValidaMensagem
-
+from Classes.VerificaClasse import ClasseIP
 import socket
 
 servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -21,6 +21,7 @@ while True:
         string = conexaoCliente.recv(1024)
         mensagemDoCliente = string.decode('ascii')
         
+        resposta = 'Ip invalido'
         if(mensagemDoCliente == 'fechar'):
 
             print('Conexão fechada.')
@@ -36,12 +37,12 @@ while True:
                 octetos = ip.separaOctetos()
                 if(ip.verificaCampos(octetos)):
                     if(ip.contaCampos(octetos)):
-                        print('Campos valido')
-                    
-                
+                        tipoIP = ClasseIP(octetos)
+                        resposta = tipoIP.tipoClasse()
+                        if(resposta == ''):
+                            resposta = 'Ip invalido'
             # Enviando msg pro cliente
-            dado = input('Digite Uma msg para o clinte')
-            msg = dado.encode('ascii')
+            msg = resposta.encode('ascii')
             conexaoCliente.send(msg)
     
     
