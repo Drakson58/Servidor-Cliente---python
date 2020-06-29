@@ -2,7 +2,7 @@ import socket
 
 cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-host = ''
+host = 'localhost'
 porta = 9980
 cliente.connect((host, porta)) # Se conecantando ao servidor.
 
